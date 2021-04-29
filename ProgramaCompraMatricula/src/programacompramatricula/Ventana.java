@@ -52,8 +52,31 @@ public class Ventana extends JFrame{
       btnBuscar.setForeground(Color.WHITE);
       btnBuscar.setBorder(new RoundedBorder(40));
       panel.add(btnBuscar);
+      ActionListener oyente = new ActionListener() {
+           @Override
+             public void actionPerformed(ActionEvent e) {
+                  if (!((txtCodigo.getText()).equals(""))) {
+                      codigoSis = txtCodigo.getText();
+                      boolean esNumerico;
+                      esNumerico = codigoSis.matches("[+-]?\\d*(\\.\\d+)?");
+                      if(esNumerico && codigoSis.length()==9){
+                         buscarEnLaBaseDeDatos();
+                      }else{
+                         JOptionPane.showMessageDialog(null, "Verifique el codigo SIS", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                       }
+                  }else {
+                        
+                   }
+
+           }
+
+         };
+
+        btnBuscar.addActionListener(oyente);
       
-      
+    }
+    private void buscarEnLaBaseDeDatos(){
+    
     }
     private void agregarJtxtCodigo(){
         txtCodigo = new JTextField("");
@@ -71,3 +94,6 @@ public class Ventana extends JFrame{
         panel.add(titulo);
     }
 }
+
+
+
