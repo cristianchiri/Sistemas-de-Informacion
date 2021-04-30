@@ -61,7 +61,6 @@ public class Ventana extends JFrame{
                       esNumerico = codigoSis.matches("[+-]?\\d*(\\.\\d+)?");
                       if(esNumerico && codigoSis.length()==9){
                          buscarEnLaBaseDeDatos();
-                         VentanaResultado ventResultado = new VentanaResultado("Pepe", "Martinez","Grebara","29/05/2021","201801256",9568559,"cbba","Ingeniería de Sistemas","Tecnología");
                       }else{
                          JOptionPane.showMessageDialog(null, "Verifique el codigo SIS", "Advertencia", JOptionPane.WARNING_MESSAGE);
                        }
@@ -77,7 +76,8 @@ public class Ventana extends JFrame{
       
     }
     private void buscarEnLaBaseDeDatos(){
-    
+      
+      VentanaResultado ventResultado = new VentanaResultado("Gabriela", "Martinez","Grebara","29/05/2021","201801256",9568559,"cbba","Ingeniería de Sistemas","Tecnología");
     }
     private void agregarJtxtCodigo(){
         txtCodigo = new JTextField("");
