@@ -91,13 +91,19 @@ public class Ventana extends JFrame{
         try{
             Statement sql = Conexion.getConexion().createStatement();
             
-            String consulta = "SELECT nombres FROM Estudiantes WHERE condigo_sis ="+ CodSis;
+            String consulta = "SELECT * FROM Estudiantes WHERE condigo_sis ="+ CodSis;
             
             ResultSet resultado = sql.executeQuery(consulta);
             
-            while(resultado.next()){
-                bases += resultado.getString(1) + "\n";
-            }
+            resultado.next();
+            bases += "Id = "+ resultado.getString(3)+"\n"
+                    +" Nombres = "+ resultado.getString(2)+"\n" 
+                    +" Apellido Paterno = "+resultado.getString(3)+"\n"
+                    +" Apellido Materno = "+resultado.getString(4)+"\n"
+                    +" Condigo Sis = "+resultado.getString(5)+"\n"
+                    +" CI = "+resultado.getString(6)+"\n"
+                    +" Fecha Nacimiento = "+resultado.getString(7)+"\n";
+               
 
             JOptionPane.showMessageDialog(null, bases);
             
