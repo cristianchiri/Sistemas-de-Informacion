@@ -27,7 +27,7 @@ public class Factura extends JFrame{
     String nombreEstudiante;
 
     public Factura(String carreraE, String codigoSisE, String nombreE) {
-        setSize(950, 600);
+        setSize(980, 580);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.BLUE);
@@ -50,7 +50,7 @@ public class Factura extends JFrame{
     }
     private void agregarPanel2(){
         panel2 = new JPanel();
-        panel2.setBackground(Color.DARK_GRAY);
+        panel2.setBackground(Color.LIGHT_GRAY);
         panel2.setLayout(null);
         getContentPane().add(panel2, BorderLayout.CENTER);
         agregarMensajes();
@@ -61,42 +61,42 @@ public class Factura extends JFrame{
         periodo = new JLabel();
         periodo.setText("Periodo: 1-2021");
         periodo.setBounds(50, 55, 500, 40);
-        periodo.setForeground(Color.WHITE);
+        periodo.setForeground(Color.BLACK);
         periodo.setFont(new Font("Arial", 0, 28));
         panel2.add(periodo);
         
         facultad = new JLabel();
         facultad.setText("Facultad: CIENCIAS Y TECNOLOGIA");
         facultad.setBounds(50, 105, 500, 40);
-        facultad.setForeground(Color.WHITE);
+        facultad.setForeground(Color.BLACK);
         facultad.setFont(new Font("Arial", 0, 28));
         panel2.add(facultad);
         
         carrera = new JLabel();
         carrera.setText("Carrera: "+carreraEstudiante);
         carrera.setBounds(50, 155, 500, 40);
-        carrera.setForeground(Color.WHITE);
+        carrera.setForeground(Color.BLACK);
         carrera.setFont(new Font("Arial", 0, 28));
         panel2.add(carrera);
         
         estudiante = new JLabel();
         estudiante.setText("Estudiante: "+nombreEstudiante);
         estudiante.setBounds(50,205 , 500, 40);
-        estudiante.setForeground(Color.WHITE);
+        estudiante.setForeground(Color.BLACK);
         estudiante.setFont(new Font("Arial", 0, 28));
         panel2.add(estudiante);
         
         codigoSis = new JLabel();
         codigoSis.setText("Codido Sis: "+codigoSisEstudiante);
         codigoSis.setBounds(590, 205, 600, 40);
-        codigoSis.setForeground(Color.WHITE);
+        codigoSis.setForeground(Color.BLACK);
         codigoSis.setFont(new Font("Arial", 0, 28));
         panel2.add(codigoSis);
         
         precio = new JLabel();
         precio.setText("Son: Catorce 0/100 bs.       14.00");
         precio.setBounds(50, 255, 600, 40);
-        precio.setForeground(Color.WHITE);
+        precio.setForeground(Color.BLACK);
         precio.setFont(new Font("Arial", 0, 28));
         panel2.add(precio);
     }
