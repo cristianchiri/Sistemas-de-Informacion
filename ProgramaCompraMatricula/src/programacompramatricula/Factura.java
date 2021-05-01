@@ -101,10 +101,40 @@ public class Factura extends JFrame{
         panel2.add(precio);
     }
     private void botonImprimir(){
-      
+      imprimir = new JButton("IMPRIMIR");
+      imprimir.setBounds(300, 350, 115, 47);
+      imprimir.setBackground(Color.DARK_GRAY);
+      imprimir.setForeground(Color.WHITE);
+      imprimir.setBorder(new RoundedBorder(40));
+      panel2.add(imprimir);
+      ActionListener oyente = new ActionListener() {
+           @Override
+             public void actionPerformed(ActionEvent e) {
+                  
+
+           }
+
+         };
+
+        imprimir.addActionListener(oyente);
     }
     private void botonCancelar(){
-    
+    cancelar = new JButton("CANCELAR");
+      cancelar.setBounds(510, 350, 115, 47);
+      cancelar.setBackground(Color.DARK_GRAY);
+      cancelar.setForeground(Color.WHITE);
+      cancelar.setBorder(new RoundedBorder(40));
+      panel2.add(cancelar);
+      ActionListener oyente = new ActionListener() {
+           @Override
+             public void actionPerformed(ActionEvent e) {
+                  
+
+           }
+
+         };
+
+        cancelar.addActionListener(oyente);
     }
     private void agregarTitulo(){
         titulo = new JLabel();
