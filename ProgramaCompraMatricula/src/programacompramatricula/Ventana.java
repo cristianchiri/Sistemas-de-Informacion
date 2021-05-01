@@ -86,18 +86,17 @@ public class Ventana extends JFrame{
     }
     
     private void buscarEnLaBaseDeDatos() throws SQLException{
-        String bases = "";
         String CodSis = txtCodigo.getText();
         
         try{
             Statement sql = Conexion.getConexion().createStatement();
-            
+            //Queery que se ejecuta en la tabla estudiantes
             String consulta = "SELECT * FROM estudiantes WHERE condigo_sis ="+ CodSis;
-            
+            //envio de Query
             ResultSet resultado = sql.executeQuery(consulta);
             
             resultado.next();
-            
+            //Envio de datos a la ventana resultado
             VentanaResultado ventResultado = new VentanaResultado(resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getString(7),resultado.getString(8),resultado.getString(9),resultado.getString(7));   
             
         }catch(SQLException ex){
