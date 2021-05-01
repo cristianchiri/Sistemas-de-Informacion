@@ -84,11 +84,7 @@ public class Ventana extends JFrame{
         btnBuscar.addActionListener(oyente);
       
     }
-<<<<<<< HEAD
-    private void buscarEnLaBaseDeDatos(){
-      
-      VentanaResultado ventResultado = new VentanaResultado("Gabriela", "Martinez","Grebara","29/05/2021","201801256",9568559,"cbba","Ingeniería de Sistemas","Tecnología");
-=======
+    
     private void buscarEnLaBaseDeDatos() throws SQLException{
         String bases = "";
         String CodSis = txtCodigo.getText();
@@ -96,26 +92,17 @@ public class Ventana extends JFrame{
         try{
             Statement sql = Conexion.getConexion().createStatement();
             
-            String consulta = "SELECT * FROM Estudiantes WHERE condigo_sis ="+ CodSis;
+            String consulta = "SELECT * FROM estudiantes WHERE condigo_sis ="+ CodSis;
             
             ResultSet resultado = sql.executeQuery(consulta);
             
             resultado.next();
-            bases += "Id = "+ resultado.getString(3)+"\n"
-                    +" Nombres = "+ resultado.getString(2)+"\n" 
-                    +" Apellido Paterno = "+resultado.getString(3)+"\n"
-                    +" Apellido Materno = "+resultado.getString(4)+"\n"
-                    +" Condigo Sis = "+resultado.getString(5)+"\n"
-                    +" CI = "+resultado.getString(6)+"\n"
-                    +" Fecha Nacimiento = "+resultado.getString(7)+"\n";
-               
-
-            JOptionPane.showMessageDialog(null, bases);
+            
+            VentanaResultado ventResultado = new VentanaResultado(resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getString(7),resultado.getString(8),resultado.getString(9),resultado.getString(7));   
             
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "NO EXISTE EL ALUMNO");
         }
->>>>>>> c9f257914d1627304b07bff4fcc5ebce0f21f5e5
     }
     private void agregarJtxtCodigo(){
         txtCodigo = new JTextField("");
