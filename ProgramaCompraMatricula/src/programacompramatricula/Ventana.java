@@ -5,7 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Ventana extends JFrame{
@@ -60,7 +65,11 @@ public class Ventana extends JFrame{
                       boolean esNumerico;
                       esNumerico = codigoSis.matches("[+-]?\\d*(\\.\\d+)?");
                       if(esNumerico && codigoSis.length()==9){
-                         buscarEnLaBaseDeDatos();
+                          try {
+                              buscarEnLaBaseDeDatos();
+                          } catch (SQLException ex) {
+                              Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+                          }
                       }else{
                          JOptionPane.showMessageDialog(null, "Verifique el codigo SIS", "Advertencia", JOptionPane.WARNING_MESSAGE);
                        }
@@ -75,9 +84,38 @@ public class Ventana extends JFrame{
         btnBuscar.addActionListener(oyente);
       
     }
+<<<<<<< HEAD
     private void buscarEnLaBaseDeDatos(){
       
       VentanaResultado ventResultado = new VentanaResultado("Gabriela", "Martinez","Grebara","29/05/2021","201801256",9568559,"cbba","Ingeniería de Sistemas","Tecnología");
+=======
+    private void buscarEnLaBaseDeDatos() throws SQLException{
+        String bases = "";
+        String CodSis = txtCodigo.getText();
+        
+        try{
+            Statement sql = Conexion.getConexion().createStatement();
+            
+            String consulta = "SELECT * FROM Estudiantes WHERE condigo_sis ="+ CodSis;
+            
+            ResultSet resultado = sql.executeQuery(consulta);
+            
+            resultado.next();
+            bases += "Id = "+ resultado.getString(3)+"\n"
+                    +" Nombres = "+ resultado.getString(2)+"\n" 
+                    +" Apellido Paterno = "+resultado.getString(3)+"\n"
+                    +" Apellido Materno = "+resultado.getString(4)+"\n"
+                    +" Condigo Sis = "+resultado.getString(5)+"\n"
+                    +" CI = "+resultado.getString(6)+"\n"
+                    +" Fecha Nacimiento = "+resultado.getString(7)+"\n";
+               
+
+            JOptionPane.showMessageDialog(null, bases);
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "NO EXISTE EL ALUMNO");
+        }
+>>>>>>> c9f257914d1627304b07bff4fcc5ebce0f21f5e5
     }
     private void agregarJtxtCodigo(){
         txtCodigo = new JTextField("");
