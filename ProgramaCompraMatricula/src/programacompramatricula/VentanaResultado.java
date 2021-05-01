@@ -15,12 +15,12 @@ public class VentanaResultado extends JFrame{
     private String apellidoMaterno;
     private String fechaNacimiento;
     private String codigoSis;
-    private int ci;
+    private String ci;
     private String expedido;
     private String carrera;
     private String facultad;
 
-    public VentanaResultado(String n,String ap, String am, String fn, String cs,int ci, String ex,String c, String f){
+    public VentanaResultado(String n,String ap, String am, String fn, String cs, String ci, String ex,String c, String f){
         
         nombre = n;
         apellidoPaterno=ap;

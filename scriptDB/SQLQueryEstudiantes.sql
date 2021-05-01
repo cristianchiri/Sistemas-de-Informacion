@@ -16,6 +16,7 @@ create table estudiantes(
 );
 create table registro_ventas(
 	id int primary key identity (1,1) not null,
+	idEstudiante int not null,
 	fecha_compra datetime not null,
 	gestion varchar(20) not null,
 	constraint fk_estudiante foreign key (idEstudiante) references estudiantes (id)
@@ -28,11 +29,11 @@ values('Pepito','Gutierrez','Lopez',201805980,4563285,'1998-05-03','Ing. Sistema
 
 insert into estudiantes
 (nombres,apellido_paterno,apellido_materno,condigo_sis,ci,fecha_nacimiento,carrera, facultad,expedido)
-values('Jerry','Vega','Sanchez',201805980,4563285,'1998-05-03','Ing. Sistemas', 'Tecnología','cbba');
+values('Jerry','Vega','Sanchez',201805981,4563285,'1998-05-03','Ing. Sistemas', 'Tecnología','cbba');
 
 insert into estudiantes
 (nombres,apellido_paterno,apellido_materno,condigo_sis,ci,fecha_nacimiento,carrera, facultad,expedido)
-values('Sandra','Arrazola','Gomez',201805980,4563285,'1998-05-03','Ing. Sistemas', 'Tecnología','cbba');
+values('Sandra','Arrazola','Gomez',201805982,4563285,'1998-05-03','Ing. Sistemas', 'Tecnología','cbba');
 
 /*Datos de prueba de la tabla registro_ventas*/
 insert into registro_ventas
