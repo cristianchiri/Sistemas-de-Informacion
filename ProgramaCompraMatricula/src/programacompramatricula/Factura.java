@@ -11,8 +11,11 @@ import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class Factura extends JFrame implements Printable{
     private JPanel panel1;
     private JPanel panel2;
@@ -123,10 +126,12 @@ public class Factura extends JFrame implements Printable{
                  try{
                    Statement sql = Conexion.getConexion().createStatement();
                    
-                    String insercion = "INSERT INTO registro_ventas (idEstudiante, fecha_compra, gestion) VALUES('"+idEstudiante + "','2021-05-25','2021-1');";
+                    String insercion = "INSERT INTO registro_ventas (idEstudiante, fecha_compra, gestion) VALUES('"+idEstudiante + "','2021-05-11','2021-1');";
                     sql.executeUpdate(insercion);
 
                     JOptionPane.showMessageDialog(null, "SE LLENO EL REGISTRO EXITOSAMENTE" );
+                    
+                    imprimir();
                     
                     eliminar();
                 }catch(SQLException ex){
@@ -180,5 +185,38 @@ public class Factura extends JFrame implements Printable{
     private void eliminar(){
           Ventana win = new Ventana();
           this.dispose();
-      }
+    }
+    
+    private void imprimir() {
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable(this);        
+        if (job.printDialog()) {
+            try {
+                job.print();
+            } catch (PrinterException ex) {
+                JOptionPane.showMessageDialog(null, "ERROR EN " + ex);
+            }
+        }
+    }
+    
+    private void interfazImpresion(){
+        try {
+            for (UIManager.LookAndFeelInfo info :UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
 }
