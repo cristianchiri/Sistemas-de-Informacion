@@ -2,6 +2,9 @@ package programacompramatricula;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 public class VentanaResultado extends JFrame{
     private JPanel panel;
     private JButton btnImprimir;
@@ -10,6 +13,7 @@ public class VentanaResultado extends JFrame{
     private JLabel nombreLabel; 
     private JLabel nombreLabelValor;
     //Datos del estudiante
+    private int id; 
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -20,8 +24,9 @@ public class VentanaResultado extends JFrame{
     private String carrera;
     private String facultad;
 
-    public VentanaResultado(String n,String ap, String am, String fn, String cs, String ci, String ex,String c, String f){
+    public VentanaResultado(int id, String n,String ap, String am, String fn, String cs, String ci, String ex,String c, String f){
         
+        this.id = id;
         nombre = n;
         apellidoPaterno=ap;
         apellidoMaterno=am;
@@ -46,7 +51,7 @@ public class VentanaResultado extends JFrame{
         panel.setLayout(null);
         getContentPane().add(panel);
         agregarTitulo();
-        agregarBotonImprimir();
+        agregarBotonVistaPrevia();
         agregarBotonNuevaBusqueda();
         agregarDatos();
       }
@@ -214,15 +219,23 @@ public class VentanaResultado extends JFrame{
             titulo.setFont(new Font("Arial", 0, 40));
             panel.add(titulo);
         }
-        private void agregarBotonImprimir(){
-            btnImprimir = new JButton("Imprimir");
+        private void agregarBotonVistaPrevia(){
+            btnImprimir = new JButton("Vista Previa");
             btnImprimir.setBounds(300, 650, 110, 40);
-        btnImprimir.setBackground(Color.DARK_GRAY);
-        btnImprimir.setForeground(Color.WHITE);
-        btnImprimir.setBorder(new RoundedBorder(40));
-        panel.add(btnImprimir);
-        
+            btnImprimir.setBackground(Color.DARK_GRAY);
+            btnImprimir.setForeground(Color.WHITE);
+            btnImprimir.setBorder(new RoundedBorder(40));
+            panel.add(btnImprimir);
+            ActionListener oyente = new ActionListener() {
+                @Override
+                    public void actionPerformed(ActionEvent e) {
+                            Factura fac = new Factura(id, carrera, codigoSis, nombre);
+                            eliminar();
+                    }
+            };
+            btnImprimir.addActionListener(oyente);
       }
+        
       private void agregarBotonNuevaBusqueda(){
         btnNuevaBusqueda = new JButton("Nueva Busqueda");
         btnNuevaBusqueda.setBounds(650,650,150,40);
@@ -230,5 +243,17 @@ public class VentanaResultado extends JFrame{
         btnNuevaBusqueda.setForeground(Color.WHITE);
         btnNuevaBusqueda.setBorder(new RoundedBorder(40));
         panel.add(btnNuevaBusqueda);
+        ActionListener oyente = new ActionListener() {
+                @Override
+                    public void actionPerformed(ActionEvent e) {
+                            Ventana window = new Ventana();
+                            eliminar();
+                    }
+            };
+            btnNuevaBusqueda.addActionListener(oyente);
+      }
+      
+      private void eliminar(){
+          this.dispose();
       }
 }

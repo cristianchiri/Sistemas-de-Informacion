@@ -97,9 +97,11 @@ public class Ventana extends JFrame{
             
             resultado.next();
             //Envio de datos a la ventana resultado
-            VentanaResultado ventResultado = new VentanaResultado(resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getString(7),resultado.getString(8),resultado.getString(9),resultado.getString(7));   
+            VentanaResultado ventResultado = new VentanaResultado(resultado.getInt(1), resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getString(7),resultado.getString(8),resultado.getString(9),resultado.getString(7));   
+            eliminar();
             
         }catch(SQLException ex){
+            
             JOptionPane.showMessageDialog(null, "NO EXISTE EL ALUMNO");
         }
     }
@@ -118,6 +120,11 @@ public class Ventana extends JFrame{
         titulo.setFont(new Font("cooper black", 0, 40));
         panel.add(titulo);
     }
+    
+    private void eliminar(){
+          this.dispose();
+      }
+
 }
 
 

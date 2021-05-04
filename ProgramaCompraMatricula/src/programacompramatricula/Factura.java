@@ -11,6 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
+import java.sql.SQLException;
+import java.sql.Statement;
 public class Factura extends JFrame implements Printable{
     private JPanel panel1;
     private JPanel panel2;
@@ -18,6 +20,7 @@ public class Factura extends JFrame implements Printable{
     public JButton imprimir;
     public JButton cancelar;
     
+    private int idEstudiante;
     private JLabel titulo;
     private JLabel periodo;
     private JLabel facultad;
@@ -31,7 +34,9 @@ public class Factura extends JFrame implements Printable{
     String nombreEstudiante;
     
     
-    public Factura(String carreraE, String codigoSisE, String nombreE) {
+    public Factura(int id, String carreraE, String codigoSisE, String nombreE) {
+        
+        idEstudiante = id;
         setSize(980, 580);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -115,7 +120,18 @@ public class Factura extends JFrame implements Printable{
       ActionListener oyente = new ActionListener() {
            @Override
              public void actionPerformed(ActionEvent e) {
-                  
+                 try{
+                   Statement sql = Conexion.getConexion().createStatement();
+                   
+                    String insercion = "INSERT INTO registro_ventas (idEstudiante, fecha_compra, gestion) VALUES('"+idEstudiante + "','2021-05-25','2021-1');";
+                    sql.executeUpdate(insercion);
+
+                    JOptionPane.showMessageDialog(null, "SE LLENO EL REGISTRO EXITOSAMENTE" );
+                    
+                    eliminar();
+                }catch(SQLException ex){
+                    JOptionPane.showMessageDialog(null, "NO SE PUDO COMPLETAR EL REGISTRO");
+                }
 
            }
 
@@ -133,7 +149,7 @@ public class Factura extends JFrame implements Printable{
           ActionListener oyente = new ActionListener() {
            @Override
              public void actionPerformed(ActionEvent e) {
-                  
+                 eliminar();
 
            }
 
@@ -160,4 +176,9 @@ public class Factura extends JFrame implements Printable{
             return NO_SUCH_PAGE;
         }
     }
+    
+    private void eliminar(){
+          Ventana win = new Ventana();
+          this.dispose();
+      }
 }
