@@ -97,7 +97,7 @@ public class Ventana extends JFrame{
             
             resultado.next();
             //Envio de datos a la ventana resultado
-            VentanaResultado ventResultado = new VentanaResultado(resultado.getInt(1), resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getString(7),resultado.getString(8),resultado.getString(9),resultado.getString(7));   
+            VentanaResultado ventResultado = new VentanaResultado(resultado.getInt(1), resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(7),resultado.getString(5),resultado.getString(6),resultado.getString(10),resultado.getString(8),resultado.getString(9));   
             eliminar();
             
         }catch(SQLException ex){
